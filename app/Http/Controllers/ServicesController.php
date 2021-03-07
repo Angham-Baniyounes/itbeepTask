@@ -23,9 +23,9 @@ class ServicesController extends Controller
             'email' => 'required | email',
         ]);
         $user = new User();
-        $user->name     = session()->get('name');
-        $user->mobile   = session()->get('mobile');
-        $user->email    = session()->get('email');
+        $user->name       = session()->get('name');
+        $user->mobile     = session()->get('mobile');
+        $user->email      = session()->get('email');
         $user->service_id = session()->get('service_id');
         $user->intrest_id = session()->get('intrest_id');
 

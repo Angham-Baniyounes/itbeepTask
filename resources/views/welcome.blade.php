@@ -61,7 +61,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form class="form flex col-md-12 center-block" acrion="/addUser" method="POST">
+                <form class="form flex col-md-12 center-block" class="btn-submit" method="POST">
                     @csrf
                     <div class="form-group">
                         <input type="hidden" name="" value="{{$ser_id = session()->get('service_id')}}">

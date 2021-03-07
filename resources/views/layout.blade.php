@@ -14,6 +14,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="css/index_style.css">
+        <meta name="csrf-token" content="{{ csrf_token() }}" />
         <style>
             html, body {
                 background-color: #fff;
@@ -57,6 +58,44 @@
                 // debugger;
                 let intrest_id = $("input[name='intrest_id']:checked").val();
                 sessionStorage.setItem('intrest_id', intrest_id);
+            });
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $(".btn-submit").click(function(e){
+            e.preventDefault();
+            
+            let uname = session('name');
+            let umobile = session('mobile');
+            let uemail = session('email');
+            let uservice_id = session('service_id');
+            let uintrest_id = session('intrest_id');
+            let url = '{{ url('postinsert') }}';
+
+            $.ajax({
+            url:url,
+            method:'POST',
+            data:{
+                    name:uname,
+                    mobile:umobile,
+                    email:uemail,
+                    service_id:uservice_id,
+                    intrest_id:uintrest_id,
+            }
+                    },
+            success:function(response){
+                if(response.success){
+                    alert(response.message) //Message come from controller
+                }else{
+                    alert("Error")
+                }
+            },
+            error:function(error){
+                console.log(error)
+            }
+            });
             });
         </script>
         {{$name = session('name')}}
