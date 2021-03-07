@@ -13,7 +13,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/test2', function () {
-//     return view('test2');
-// });
 Route::get('/', 'ServicesController@index');
+Route::post('/addUser', 'ServicesController@store');

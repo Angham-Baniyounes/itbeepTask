@@ -41,13 +41,28 @@
         <script>
             $('#send').click(function(e) {
                 e.preventDefault();
+                sessionStorage.setItem('name', $("#name").val());
+                sessionStorage.setItem('mobile', $("#mobile").val());
+                sessionStorage.setItem('email', $("#email").val());
             });
             
             $('#next').click(function(e) {
                 e.preventDefault();
-                $(".service")
+                // debugger;
+                let service_id = $("input[name='service_id']:checked").val();
+                sessionStorage.setItem('service_id', service_id);
             });
-            
+            $('#insert').click(function(e) {
+                e.preventDefault();
+                // debugger;
+                let intrest_id = $("input[name='intrest_id']:checked").val();
+                sessionStorage.setItem('intrest_id', intrest_id);
+            });
         </script>
+        {{$name = session('name')}}
+        {{$mobile = session('mobile')}}
+        {{$email = session('email')}}
+        {{$service_id = session('service_id')}}
+        {{$intrest_id = session('intrest_id')}}
     </body>
 </html>
